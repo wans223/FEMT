@@ -1,0 +1,32 @@
+! BOUNDARY CONDITIONS
+  STEP 1
+    DISPLACEMENT
+       GIVEN_DISP    11
+          55   V  0.0
+           1   V  0.0
+           3   V  0.0
+           6   V  0.0
+          10   V  0.0
+          15   V  0.0
+          21   V  0.0
+          28   V  0.0
+          36   V  0.0
+          45   V  0.0
+          55   U  0.0
+       END GIVEN_DISP
+    END DISPLACEMENT
+
+    FORCE
+       LINE_FORCE  9
+                171    SIDE       200       198    F_N     10.0    10.0
+                152    SIDE       198       195    F_N     10.0    10.0
+                133    SIDE       195       191    F_N     10.0    10.0
+                114    SIDE       191       186    F_N     10.0    10.0
+                 95    SIDE       186       180    F_N     10.0    10.0
+                 76    SIDE       180       173    F_N     10.0    10.0
+                 57    SIDE       173       165    F_N     10.0    10.0
+                 38    SIDE       165       156    F_N     10.0    10.0
+                 19    SIDE       156       146    F_N     10.0    10.0
+       END LINE_FORCE
+    END FORCE
+  END STEP
