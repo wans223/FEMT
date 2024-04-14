@@ -43,7 +43,7 @@ INTEGER(INT_KIND)               J                                ! LOOP INDEX FO
 !-- SET SHAPE FUNCTIONS --
 DO I = 1, NUM_POINT
    ! TRIANGULAR ELEMENTS (AREA COORDINATES)
-   IF(NUM_NODE .EQ. 3 .OR. NUM_NODE .EQ. 6) THEN   ! Õı€√≥…°∂”–œﬁµ•‘™∑®°∑2003ƒÍ∞Ê P108
+   IF(NUM_NODE .EQ. 3 .OR. NUM_NODE .EQ. 6) THEN   ! ÁéãÂãñÊàê„ÄäÊúâÈôêÂçïÂÖÉÊ≥ï„Äã2003Âπ¥Áâà P108
       DO J = 1, 3
          SHAPES(J,I) = INTE_POINT(I)%COORD(J)
       ENDDO
@@ -57,7 +57,7 @@ DO I = 1, NUM_POINT
       SHAPES(1,I) = SHAPES(1,I) - (SHAPES(4,I) + SHAPES(6,I)) / 2.0
       SHAPES(2,I) = SHAPES(2,I) - (SHAPES(4,I) + SHAPES(5,I)) / 2.0
       SHAPES(3,I) = SHAPES(3,I) - (SHAPES(5,I) + SHAPES(6,I)) / 2.0
-   ELSE ! RECTANGULAR ELEMENTS (CARTESIAN COORDINATES) Õı€√≥…°∂”–œﬁµ•‘™∑®°∑2003ƒÍ∞Ê P114
+   ELSE ! RECTANGULAR ELEMENTS (CARTESIAN COORDINATES) ÁéãÂãñÊàê„ÄäÊúâÈôêÂçïÂÖÉÊ≥ï„Äã2003Âπ¥Áâà P114
       ! NODES: (1,2,3,4) 
       DO J = 1, 4 
          SHAPES(J,I) = (1.0 + NODE_SIGN(1,J) * INTE_POINT(I)%COORD(1)) * &
@@ -86,9 +86,11 @@ DO I = 1, NUM_POINT
       DO J = 9,9
          SHAPES(J,I) = (1.0 - INTE_POINT(I)%COORD(1) ** 2) * (1.0 - INTE_POINT(I)%COORD(2) ** 2)
       ENDDO
-      !DO J = 1, 4
-      !    SHAPES(J,I) = SHAPES(J,I) - SHAPES(9,I) / 4.0
-      !ENDDO
+
+      DO J = 1, 4
+          SHAPES(J,I) = SHAPES(J,I) - SHAPES(9,I) / 4.0
+      ENDDO
+
       DO J = 5, 8
           SHAPES(J,I) = SHAPES(J,I) - SHAPES(9,I) / 2.0
       ENDDO
@@ -149,9 +151,11 @@ DO I = 1, NUM_POINT
         D_SHAPE(1,9,I) = -2.0 * (1.0 - INTE_POINT(I)%COORD(2)) * INTE_POINT(I)%COORD(1)
         D_SHAPE(2,9,I) = -2.0 * (1.0 - INTE_POINT(I)%COORD(1)) * INTE_POINT(I)%COORD(2)
         
-        !DO J = 1, 4
-        !   D_SHAPE(:,J,I) = D_SHAPE(:,J,I) - D_SHAPE(:,9,I) / 4.0
-        !ENDDO
+
+        DO J = 1, 4
+           D_SHAPE(:,J,I) = D_SHAPE(:,J,I) - D_SHAPE(:,9,I) / 4.0
+        ENDDO
+
         DO J = 5, 8
            D_SHAPE(:,J,I) = D_SHAPE(:,J,I) - D_SHAPE(:,9,I) / 2.0
         ENDDO 
